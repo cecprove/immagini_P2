@@ -96,6 +96,36 @@ for a=1:5
 end
 
 
+%% Calcolo della matrice di confusione
+for a=1:5
+    for b=1:3
+        analisi_dati.condizioni(a).cellsize(b).matrix_confusione = confusionmat(risultati.condizioni(a).cellsize(b).test.verita,...
+            risultati.condizioni(a).cellsize(b).test.predizioni);
+        
+        analisi_dati.condizioni(a).cellsize(b).accuracy = trace(analisi_dati.condizioni(a).cellsize(b).matrix_confusione)/size(images,2);
+        d = diag(analisi_dati.condizioni(a).cellsize(b).matrix_confusione);
+        for i=1:size(analisi_dati.condizioni(a).cellsize(b).matrix_confusione,1)
+            %calcolo recall
+            analisi_dati.condizioni(a).cellsize(b).recall(i).recall = d(i)/...
+              sum(analisi_dati.condizioni(a).cellsize(b).matrix_confusione(i,:));
+            %calcolo precision
+            analisi_dati.condizioni(a).cellsize(b).precision(i).precision = d(i)/...
+              sum(analisi_dati.condizioni(a).cellsize(b).matrix_confusione(:,i));
+        end   
+    end
+end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
