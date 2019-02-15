@@ -75,7 +75,7 @@ end
 v=1:size(images,2);
 for a=1:5
     for b=1:3 
-        for i=1:size(images,2) %i è gli indici di test. La feature testata è l'i-esima
+        for i=1:3 %size(images,2) %i è gli indici di test. La feature testata è l'i-esima
        
             t= setdiff(v,i); % vettore indici training, tutte le features tranne quella di test i-ma
         
@@ -90,7 +90,7 @@ for a=1:5
            %classifier
            classifier= fitcecoc(training_features, training_labels, 'Coding', 'onevsall');      
            risultati.condizioni(a).cellsize(b).test(i).predizioni= predict(classifier, test_feature);
-       
+        i
          end
     end
 end
@@ -99,10 +99,17 @@ end
 %% Calcolo della matrice di confusione
 for a=1:5
     for b=1:3
-        analisi_dati.condizioni(a).cellsize(b).matrix_confusione = confusionmat(risultati.condizioni(a).cellsize(b).test.verita,...
-            risultati.condizioni(a).cellsize(b).test.predizioni);
+        % il problema è come passiamo i dati alla confusion mat poichè non
+        % prende in ingresso una struct ma un vettore. 
+        for i=1:size(risultati.condizioni(a).cellsize(b).test,2)
+           verita(i,1) = risultati.condizioni(a).cellsize(b).test(i).verita;
+           predizione(i,1) = risultati.condizioni(a).cellsize(b).test(i).predizioni;
+        end
+             
+        analisi_dati.condizioni(a).cellsize(b).matrix_confusione = confusionmat(verita,...
+            predizione);
         
-        analisi_dati.condizioni(a).cellsize(b).accuracy = trace(analisi_dati.condizioni(a).cellsize(b).matrix_confusione)/size(images,2);
+        analisi_dati.condizioni(a).cellsize(b).accuracy = trace(analisi_dati.condizioni(a).cellsize(b).matrix_confusione)/sum(sum(analisi_dati.condizioni(a).cellsize(b).matrix_confusione));
         d = diag(analisi_dati.condizioni(a).cellsize(b).matrix_confusione);
         for i=1:size(analisi_dati.condizioni(a).cellsize(b).matrix_confusione,1)
             %calcolo recall
