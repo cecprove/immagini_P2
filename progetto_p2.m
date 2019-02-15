@@ -52,7 +52,7 @@ end
 % e un ciclo "for" b da 1 a 3 per le diverse CellSize.
 
 c=[2 4 8]; %vettore che rappresenta le dimensioni CellSize di nostro interesse, varia con b
-rumore = logspace(-5,-1,5); %funzione per definire il rumore
+rumore = logspace(-5,-1,5); %funzione per definire il rumore (double), anche l'immagine va trasformata in double. 
 for a=1:5 
    for b=1:3 
           for i=1:size(images,2)
