@@ -3,7 +3,7 @@
 % dalla directory/path personale andiamo a prendere il database Yale fornito
 imagespath=dir('C:\Users\cecil\Documents\Universita\ElaborazioneImmagini\Progetto\Database_per_gli_elaborati_di_Tipo_2_20190202\Yale\Yale');
 imagespath;
-ImagesPath=imagespath(4:end,:);% Sono eliminati i primi tre elementi perché non sono immagini
+ImagesPath=imagespath(4:end,:);% Sono eliminati i primi tre elementi perche' non sono immagini
 
 % creiamo una struct images in cui inserire solo le immagini(unit8) e le tipologie(char)/classi
 images=struct;
@@ -12,7 +12,7 @@ for i=1:size(ImagesPath,1)
     images(i).tipologia = extractAfter(ImagesPath(i).name,".");
 end
 
-%% È associata un'etichetta numerica(double) ad ogni tipologia(char) 
+% Associamo un'etichetta numerica(double) ad ogni tipologia(char) 
 for i=1:size(images,2)
     switch images(i).tipologia
         case 'glasses'
@@ -42,7 +42,7 @@ for i=1:size(images,2)
             
 end
 
-%% creiamo le HOG feature di tutte le immagini
+%% Creiamo le HOG feature di tutte le immagini
 
 % Inseriamo le feature estratte nella struttura: database.condizione(a).feature(b).matrice.matrice 
 % a= 1--> senza rumore e a=2,3,4,5 con rumore crescente addizionato all'immagine originale
@@ -63,7 +63,7 @@ for a=1:5
    end
 end
 
-%prova per visulaizzare le HOG 
+%prova per visualizzare le HOG 
 %imshow(database.dimensione.dominio(1).immagini(2).matrice(11).matrice);
 %hold on
 %plot(visualization)
