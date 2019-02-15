@@ -9,7 +9,7 @@ for i=1:size(ImagesPath,1)
     images(i).images=imread([ImagesPath(i).folder,'/',ImagesPath(i).name]);
     % creo il path totale dell'immagine, quindi
     % sto caricando con ogni ciclo la struttura ad ogni immagine
-    % Se volessi solo l'immagine 7 scriverò images(7).images e gli dico di
+    % Se volessi solo l'immagine 7 scriverÃ² images(7).images e gli dico di
     % andare a prendere la settima immagine che ha  caricato nel database, in
     % questo caso la struct
     %creo struct con tuttii nomi delle immagini
@@ -75,7 +75,7 @@ end
 v=1:size(images,2);
 for a=1:5
     for b=1:3 
-        for i=1:3 %size(images,2) %i è gli indici di test. La feature testata è l'i-esima
+        for i=1:size(images,2) %i Ã¨ gli indici di test. La feature testata Ã¨ l'i-esima
        
             t= setdiff(v,i); % vettore indici training, tutte le features tranne quella di test i-ma
         
@@ -99,7 +99,7 @@ end
 %% Calcolo della matrice di confusione
 for a=1:5
     for b=1:3
-        % il problema è come passiamo i dati alla confusion mat poichè non
+        % il problema Ã¨ come passiamo i dati alla confusion mat poichÃ¨ non
         % prende in ingresso una struct ma un vettore. 
         for i=1:size(risultati.condizioni(a).cellsize(b).test,2)
            verita(i,1) = risultati.condizioni(a).cellsize(b).test(i).verita;
