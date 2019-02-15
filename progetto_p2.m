@@ -77,7 +77,7 @@ for a=1:5
        
             t= setdiff(v,i); % vettore degli indici del training (tutte le features esclusa quella di test i-ma)
         
-        % vettori contententi le features e le etichette per il training da passare al fitecoc
+        % vettori contententi le features e le etichette per il training da passare al fitcecoc
             for k=1:size(t,2)%163
                training_features(k,:) = database.condizione(a).feature(b).matrice(t(k)).matrice;
                training_labels(k) =images(t(k)).etichetta;
@@ -99,6 +99,7 @@ end
 
 
 %% Calcolo della matrice di confusione
+
 for a=1:5
     for b=1:3
        
