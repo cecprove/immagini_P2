@@ -71,7 +71,7 @@ end
 %% Classificatore con logica leave one out
 
 v=1:size(images,2); %vettore degli indici delle immagini totali
-a=1:5 %training del classificatore con le immagini non rumorose
+a=1:5 %training del classificatore con tutte le immagini (anche rumorose)
     for b=1:3 
         for i=1:size(images,2) % "i" indica la feature di test. (La feature testata è l'i-esima)
        
@@ -90,7 +90,7 @@ a=1:5 %training del classificatore con le immagini non rumorose
        
            %classifier fitcecoc in ingresso: feature e etichette per il training, logica "one versus all"
            classifier= fitcecoc(training_features, training_labels, 'Coding', 'onevsall');      
-           % etichetta predetta dal classificatore per la feature testata: sia rumorose che non
+           % etichetta predetta dal classificatore per la feature testata
            risultati.condizioni(a).cellsize(b).test(i).predizioni= predict(classifier, test_feature);
            end
         i % stampiamo l'indice per sapere a che ciclo è arrivato il programma
