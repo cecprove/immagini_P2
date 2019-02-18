@@ -73,6 +73,9 @@ end
 v=1:size(images,2); %vettore degli indici delle immagini totali
 a=1:5 %training del classificatore con tutte le immagini (anche rumorose)
     for b=1:3 
+    clear training_features;
+    clear training_labels;
+    clear test_feature;
         for i=1:size(images,2) % "i" indica la feature di test. (La feature testata è l'i-esima)
        
             t= setdiff(v,i); % vettore degli indici del training (tutte le features esclusa quella di test i-ma)
